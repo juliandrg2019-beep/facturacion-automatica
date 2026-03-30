@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f8fafc">
+    <title>Sistema de Cotizaciones — Maria Gomez</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- ===== HEADER APP ===== -->
+    <header class="app-header">
+        <div class="app-header-inner">
+            <div class="brand">
+                <div class="brand-icon">✂️</div>
+                <div>
+                    <h1>MARIA GOMEZ</h1>
+                    <p>Sistema de Cotizaciones</p>
+                </div>
+            </div>
+            <button id="btn-nueva" class="btn btn-outline">+ Nueva Cotización</button>
+        </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main class="container">
+
+        <!-- FORM CARD -->
+        <section class="card form-card" id="form-section">
+            <div class="card-header">
+                <h2>📋 Datos de la Cotización</h2>
+                <span class="badge" id="badge-numero">COT-169</span>
+            </div>
+
+            <div class="form-grid">
+                <!-- Número y fecha -->
+                <div class="form-group">
+                    <label for="numero">Número de Cotización</label>
+                    <input type="number" inputmode="numeric" pattern="[0-9]*" id="numero" value="169" min="1" />
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" id="fecha" />
+                </div>
+
+                <!-- Cliente y dirección -->
+                <div class="form-group full-width">
+                    <label for="cliente">Cliente</label>
+                    <input type="text" id="cliente" placeholder="Ej: D-K – CHE S.A" list="clientes-list" />
+                    <datalist id="clientes-list"></datalist>
+                </div>
+                <div class="form-group full-width">
+                    <label for="direccion">Dirección (opcional)</label>
+                    <input type="text" id="direccion" placeholder="Dirección del cliente" />
+                </div>
+            </div>
+
+            <!-- TABLA DE ITEMS -->
+            <div class="items-section">
+                <div class="items-header">
+                    <h3>Artículos / Servicios</h3>
+                    <button id="btn-add-item" class="btn btn-sm btn-add">+ Agregar línea</button>
+                </div>
+
+                <div class="items-table-head">
+                    <span class="col-h-cant">Cant.</span>
+                    <span class="col-h-desc">Descripción</span>
+                    <span class="col-h-price">Precio/U</span>
+                    <span class="col-h-itbms">% ITBMS</span>
+                    <span class="col-h-total">Total</span>
+                    <span class="col-h-del"></span>
+                </div>
+                <div id="items-body">
+                    <!-- Item cards inserted by JS -->
+                </div>
+
+                <!-- Totales -->
+                <div class="totals-box">
+                    <div class="totals-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal-val">B/. 0.00</span>
+                    </div>
+                    <div class="totals-row itbms-row">
+                        <span>ITBMS</span>
+                        <span id="itbms-val">B/. 0.00</span>
+                    </div>
+                    <div class="totals-row total-final">
+                        <span>TOTAL</span>
+                        <span id="total-val">B/. 0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nota -->
+            <div class="form-group full-width mt-16">
+                <label for="nota">Nota / Observaciones (opcional)</label>
+                <textarea id="nota" rows="3" placeholder="Ej: Esta cotización tiene validez de 30 días..."></textarea>
+            </div>
+
+            <!-- Acciones -->
+            <div class="actions">
+                <button id="btn-preview" class="btn btn-secondary">👁 Vista Previa</button>
+                <button id="btn-pdf" class="btn btn-primary">⬇ Descargar PDF</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== PREVIEW MODAL ===== -->
+    <div class="modal-backdrop" id="modal-backdrop">
+        <div class="modal">
+            <div class="modal-header">
+                <span>Vista Previa de Cotización</span>
+                <button id="btn-close-modal" class="btn-icon">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="preview-area"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-close2" class="btn btn-outline">Cerrar</button>
+                <button id="btn-pdf2" class="btn btn-primary">⬇ Descargar PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
